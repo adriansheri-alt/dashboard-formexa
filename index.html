@@ -7,8 +7,6 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,sans-serif;}
-
-/* ── DESKTOP: fill screen, no scroll ── */
 @media(min-width:768px){
   html,body{overflow:hidden;}
   .screen{width:100vw;height:100vh;display:flex;flex-direction:column;}
@@ -23,9 +21,8 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
   .hdr{height:56px;}
   .area-pct{font-size:48px;}
   .area-name{font-size:15px;}
+  .cfg-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
 }
-
-/* ── MOBILE: single column, scroll ── */
 @media(max-width:767px){
   html,body{overflow:auto;}
   .screen{display:flex;flex-direction:column;min-height:100vh;}
@@ -48,9 +45,11 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
   .modal{width:calc(100vw - 32px);max-height:90vh;}
   .cmodal{width:calc(100vw - 32px);}
   .two{grid-template-columns:1fr;}
+  .cfg-grid{display:flex;flex-direction:column;gap:16px;}
+  .cfg-modal{width:calc(100vw - 24px);max-height:90vh;}
 }
 
-/* ── SHARED ── */
+/* HEADER */
 .hdr{background:#fff;border-bottom:4px solid #1A5432;display:flex;align-items:center;justify-content:space-between;padding:0 28px;}
 .logo{font-size:24px;font-weight:900;letter-spacing:-0.5px;color:#1A5432;}
 .logo em{color:#B11116;font-style:normal;}
@@ -64,15 +63,17 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.15;}}
 .btn-upd{background:#1A5432;border:none;color:#fff;padding:8px 18px;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;}
 .btn-upd:hover{background:#0f3d21;}
+.btn-cfg{background:transparent;border:1px solid #ddd;color:#888;padding:7px 12px;border-radius:6px;font-size:11px;cursor:pointer;font-weight:600;}
+.btn-cfg:hover{border-color:#1A5432;color:#1A5432;}
 .btn-rst{background:transparent;border:1px solid #ddd;color:#ccc;padding:7px 10px;border-radius:6px;font-size:10px;cursor:pointer;}
 .btn-rst:hover{border-color:#B11116;color:#B11116;}
 
+/* AREA CARD */
 .area{background:#fff;border:1px solid #e0e0e0;border-radius:10px;overflow:hidden;}
 .area-bar{height:4px;flex-shrink:0;}
 .area-hero{display:flex;align-items:center;justify-content:space-between;padding:13px 18px 11px;border-bottom:1px solid #f0f0f0;flex-shrink:0;}
 .area-status{font-size:10px;color:#bbb;margin-top:2px;}
 .area-pct{font-weight:900;line-height:1;letter-spacing:-1px;}
-
 .metrics{display:flex;flex-direction:column;padding:8px 18px 6px;flex-shrink:0;}
 .mr{display:flex;flex-direction:column;gap:4px;padding:7px 0;border-bottom:1px solid #f5f5f5;}
 .mr:last-child{border-bottom:none;}
@@ -84,12 +85,12 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
 .mf{height:100%;border-radius:3px;transition:width 1.4s cubic-bezier(.4,0,.2,1);}
 .cg{color:#1A5432;}.cy{color:#D97706;}.cr{color:#B11116;}
 
+/* COMMENTS */
+.comments-section{border-top:1px solid #f0f0f0;}
 .comments-header{display:flex;align-items:center;justify-content:space-between;padding:7px 18px 5px;flex-shrink:0;}
 .comments-title{font-size:9px;letter-spacing:1.5px;color:#bbb;text-transform:uppercase;font-weight:700;}
 .add-comment-btn{font-size:11px;color:#1A5432;font-weight:700;cursor:pointer;background:none;border:none;padding:4px 0;}
-.add-comment-btn:hover{opacity:.7;}
 .comments-list::-webkit-scrollbar{width:3px;}
-.comments-list::-webkit-scrollbar-track{background:transparent;}
 .comments-list::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px;}
 .comment-item{background:#f9f9f7;border-left:3px solid #e0e0e0;border-radius:0 5px 5px 0;padding:7px 10px;position:relative;}
 .comment-item.tipo-hito{border-left-color:#1A5432;}
@@ -106,6 +107,7 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
 .comment-del:hover{color:#B11116;}
 .no-comments{font-size:10px;color:#ddd;font-style:italic;padding:6px 18px 8px;}
 
+/* FOOTER */
 .footer{background:#fff;border-top:1px solid #e0e0e0;display:flex;align-items:center;padding:0 18px;}
 .footer-lbl{font-size:9px;letter-spacing:2px;color:#bbb;font-weight:700;text-transform:uppercase;white-space:nowrap;margin-right:18px;flex-shrink:0;}
 .m-name{font-size:10px;font-weight:700;color:#888;}
@@ -115,6 +117,7 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
 .m-meta-txt{font-size:9px;color:#ccc;font-weight:400;}
 .footer-time{font-size:9px;color:#ccc;white-space:nowrap;margin-left:14px;flex-shrink:0;}
 
+/* OVERLAYS */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;align-items:center;justify-content:center;padding:16px;}
 .overlay.open{display:flex;}
 .modal{background:#fff;border-radius:10px;padding:20px 22px;width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.15);}
@@ -132,6 +135,7 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
 .btn-s{padding:10px 22px;background:#1A5432;border:none;border-radius:6px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:Arial,Helvetica,sans-serif;}
 .btn-s:hover{background:#0f3d21;}
 
+/* COMMENT MODAL */
 .cmodal{background:#fff;border-radius:10px;padding:20px 22px;width:420px;box-shadow:0 8px 40px rgba(0,0,0,.15);max-height:90vh;overflow-y:auto;}
 .cmodal h3{font-size:15px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0f0f0;}
 .tipo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
@@ -145,6 +149,21 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
 .author-fi{width:100%;background:#fafafa;border:1px solid #e0e0e0;border-radius:5px;padding:10px 11px;font-size:14px;font-family:Arial,Helvetica,sans-serif;outline:none;color:#1a1a1a;}
 .author-fi:focus{border-color:#1A5432;background:#fff;}
 
+/* CONFIG MODAL */
+.cfg-modal{background:#fff;border-radius:10px;padding:22px 24px;width:760px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(0,0,0,.15);}
+.cfg-modal h3{font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;}
+.cfg-modal-sub{font-size:11px;color:#aaa;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #f0f0f0;}
+.cfg-area-block{background:#f9f9f7;border-radius:8px;padding:14px 16px;border:1px solid #eee;}
+.cfg-area-title{font-size:13px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.cfg-area-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.cfg-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;margin-bottom:8px;}
+.cfg-row:last-child{margin-bottom:0;}
+.cfg-label{font-size:12px;color:#666;}
+.cfg-input{width:110px;background:#fff;border:1px solid #ddd;border-radius:5px;padding:7px 10px;font-size:13px;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;outline:none;text-align:right;}
+.cfg-input:focus{border-color:#1A5432;}
+.cfg-weekly{font-size:11px;color:#aaa;text-align:right;min-width:80px;}
+.cfg-note{font-size:10px;color:#bbb;margin-top:10px;padding-top:8px;border-top:1px solid #eee;}
+
 .cf-layer{display:none;position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden;}
 .cf{position:absolute;width:8px;height:8px;border-radius:2px;animation:cfall linear forwards;}
 @keyframes cfall{to{transform:translateY(110vh) rotate(540deg);opacity:0;}}
@@ -154,7 +173,6 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
 </head>
 <body>
 <div class="screen">
-
   <div class="hdr">
     <div class="hdr-mid">
       <div class="logo">FORM<em>E</em>XA<span>↘</span></div>
@@ -163,19 +181,17 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
     </div>
     <div class="hdr-r">
       <div class="live"><div class="dot"></div><span id="clk">--:--</span></div>
+      <button class="btn-cfg" onclick="openCfg()">⚙ Metas</button>
       <button class="btn-rst" onclick="confirmReset()">Resetear semana</button>
       <button class="btn-upd" onclick="openModal()">+ ACTUALIZAR</button>
     </div>
   </div>
-
   <div class="body" id="body"></div>
-
   <div class="footer">
     <div class="footer-lbl">Metas del mes</div>
     <div class="monthly-strip" id="monthly-strip"></div>
     <div class="footer-time" id="last-upd"></div>
   </div>
-
 </div>
 
 <!-- MODAL DATOS -->
@@ -199,7 +215,7 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
     </div>
     <div class="two">
       <div class="fg"><div class="fl">Inventario procesado acum. (%)</div><input class="fi" type="number" id="f-inv" placeholder="0" min="0" max="100" inputmode="numeric"></div>
-      <div class="fg"><div class="fl">Incidencias hoy (meta: máx 2/sem)</div><input class="fi" type="number" id="f-incid" placeholder="0" min="0" inputmode="numeric"></div>
+      <div class="fg"><div class="fl">Incidencias hoy (meta: máx/sem)</div><input class="fi" type="number" id="f-incid" placeholder="0" min="0" inputmode="numeric"></div>
     </div>
     <div class="at">Compras</div>
     <div class="two">
@@ -229,17 +245,24 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
         <button class="tipo-btn" id="tipo-problema" onclick="selectTipo('problema')">Problema</button>
       </div>
     </div>
-    <div class="fg">
-      <div class="fl">Comentario</div>
-      <textarea class="comment-ta" id="c-text" placeholder="Escribe aquí el detalle..."></textarea>
-    </div>
-    <div class="fg">
-      <div class="fl">Quién reporta</div>
-      <input class="author-fi" type="text" id="c-author" placeholder="Tu nombre">
-    </div>
+    <div class="fg"><div class="fl">Comentario</div><textarea class="comment-ta" id="c-text" placeholder="Escribe aquí el detalle..."></textarea></div>
+    <div class="fg"><div class="fl">Quién reporta</div><input class="author-fi" type="text" id="c-author" placeholder="Tu nombre"></div>
     <div class="m-act">
       <button class="btn-c" onclick="closeCommentModal()">Cancelar</button>
       <button class="btn-s" onclick="saveComment()">Agregar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CONFIGURACIÓN DE METAS -->
+<div class="overlay" id="cfg-overlay">
+  <div class="cfg-modal">
+    <h3>Configurar metas</h3>
+    <div class="cfg-modal-sub">Define las metas mensuales — la meta semanal se calcula dividiendo entre 4. Puedes ajustar la semanal manualmente si prefieres.</div>
+    <div class="cfg-grid" id="cfg-grid"></div>
+    <div class="m-act">
+      <button class="btn-c" onclick="closeCfg()">Cancelar</button>
+      <button class="btn-s" onclick="saveCfg()">Guardar metas</button>
     </div>
   </div>
 </div>
@@ -248,37 +271,54 @@ html,body{width:100%;height:100%;background:#f0efed;font-family:Arial,Helvetica,
 <div class="toast" id="toast"></div>
 
 <script>
-const SK = 'formexa_ops_v2';
+const SK = 'formexa_ops_v3';
+
+// Default metas — monthly / weekly
+const DEFAULT_METAS = {
+  ventas:   { monthly: 160000, weekly: 40000 },
+  clientes: { monthly: 20,     weekly: 5 },
+  creditos: { monthly: 12,     weekly: 3 },
+  cotiz:    { monthly: 60,     weekly: 15 },
+  cruces:   { monthly: 72,     weekly: 18 },
+  entregas: { monthly: 80,     weekly: 20 },
+  inv:      { monthly: 100,    weekly: 100 },
+  incid:    { monthly: 8,      weekly: 2 },
+  'prov-c': { monthly: 40,     weekly: 10 },
+  ahorro:   { monthly: 20000,  weekly: 5000 },
+  ocs:      { monthly: 48,     weekly: 12 },
+  'prov-n': { monthly: 12,     weekly: 3 },
+};
 
 const AREAS = [
   { id:'comercial', name:'Comercial', color:'#1A5432', metrics:[
-    { key:'ventas',   label:'Ventas semana',   meta:40000, unit:'USD', abs:true },
-    { key:'clientes', label:'Clientes nuevos', meta:5 },
-    { key:'creditos', label:'Créditos nuevos', meta:3 },
-    { key:'cotiz',    label:'Cotizaciones',    meta:15 },
+    { key:'ventas',   label:'Ventas semana',   unit:'USD', abs:true },
+    { key:'clientes', label:'Clientes nuevos' },
+    { key:'creditos', label:'Créditos nuevos' },
+    { key:'cotiz',    label:'Cotizaciones' },
   ]},
   { id:'operaciones', name:'Operaciones + Logística', color:'#1D4ED8', metrics:[
-    { key:'cruces',   label:'Cruces Laredo',    meta:18 },
-    { key:'entregas', label:'Entregas bodega',  meta:20 },
-    { key:'inv',      label:'Inventario proc.', meta:100, unit:'%', replace:true },
-    { key:'incid',    label:'Incidencias',      meta:2, inv:true },
+    { key:'cruces',   label:'Cruces Laredo' },
+    { key:'entregas', label:'Entregas bodega' },
+    { key:'inv',      label:'Inventario proc.', unit:'%', replace:true },
+    { key:'incid',    label:'Incidencias', inv:true },
   ]},
   { id:'compras', name:'Compras', color:'#B11116', metrics:[
-    { key:'prov-c',  label:'Proveedores cotizados', meta:10 },
-    { key:'ahorro',  label:'Ahorro vs precio ref.', meta:5000, unit:'USD', abs:true },
-    { key:'ocs',     label:'OCs emitidas',           meta:12 },
-    { key:'prov-n',  label:'Proveedores nuevos',     meta:3 },
+    { key:'prov-c',  label:'Proveedores cotizados' },
+    { key:'ahorro',  label:'Ahorro vs precio ref.', unit:'USD', abs:true },
+    { key:'ocs',     label:'OCs emitidas' },
+    { key:'prov-n',  label:'Proveedores nuevos' },
   ]},
 ];
 
-const MD = [
-  { key:'ventas',   label:'Ventas mes',       meta:160000, unit:'USD', abs:true, color:'#1A5432' },
-  { key:'clientes', label:'Clientes mes',     meta:20,                           color:'#1A5432' },
-  { key:'cruces',   label:'Cruces mes',       meta:72,                           color:'#1D4ED8' },
-  { key:'prov-c',   label:'Cotizaciones mes', meta:40,                           color:'#B11116' },
-  { key:'ahorro',   label:'Ahorro mes',       meta:20000, unit:'USD', abs:true,  color:'#B11116' },
-  { key:'prov-n',   label:'Prov. nuevos mes', meta:12,                           color:'#B11116' },
-];
+const MD_KEYS = ['ventas','clientes','cruces','prov-c','ahorro','prov-n'];
+const MD_LABELS = {
+  ventas:'Ventas mes', clientes:'Clientes mes', cruces:'Cruces mes',
+  'prov-c':'Cotizaciones mes', ahorro:'Ahorro mes', 'prov-n':'Prov. nuevos mes'
+};
+const MD_COLORS = {
+  ventas:'#1A5432', clientes:'#1A5432', cruces:'#1D4ED8',
+  'prov-c':'#B11116', ahorro:'#B11116', 'prov-n':'#B11116'
+};
 const MA = ['ventas','clientes','cruces','prov-c','ahorro','prov-n'];
 
 function wk(){ const n=new Date(),j=new Date(n.getFullYear(),0,1); return n.getFullYear()+'-W'+Math.ceil((((n-j)/86400000)+j.getDay()+1)/7); }
@@ -291,17 +331,22 @@ function persist(){ try{ localStorage.setItem(SK,JSON.stringify(A)); }catch(e){}
 
 const sv=load(), WK=wk(), MK=mk();
 const A = {
-  weekKey:    (sv&&sv.weekKey===WK)  ? sv.weekKey   : WK,
-  monthKey:   (sv&&sv.monthKey===MK) ? sv.monthKey  : MK,
-  weekly:     (sv&&sv.weekKey===WK)  ? sv.weekly    : dw(),
-  monthly:    (sv&&sv.monthKey===MK) ? sv.monthly   : dm(),
-  comments:   sv?.comments           ? sv.comments  : dc(),
+  weekKey:    (sv&&sv.weekKey===WK)  ? sv.weekKey  : WK,
+  monthKey:   (sv&&sv.monthKey===MK) ? sv.monthKey : MK,
+  weekly:     (sv&&sv.weekKey===WK)  ? sv.weekly   : dw(),
+  monthly:    (sv&&sv.monthKey===MK) ? sv.monthly  : dm(),
+  comments:   sv?.comments           ? sv.comments : dc(),
   lastUpdate: (sv&&sv.weekKey===WK)  ? (sv.lastUpdate||null) : null,
+  metas:      sv?.metas              ? sv.metas    : JSON.parse(JSON.stringify(DEFAULT_METAS)),
 };
 AREAS.forEach(a=>{ if(!A.comments[a.id]) A.comments[a.id]=[]; });
+// Ensure all metas exist
+Object.keys(DEFAULT_METAS).forEach(k=>{ if(!A.metas[k]) A.metas[k]={...DEFAULT_METAS[k]}; });
 
-function pp(v,meta,inv){ if(inv) return v===0?100:Math.max(0,Math.round((1-v/meta)*100)); return Math.min(Math.round((v/meta)*100),120); }
-function avgA(a){ const ps=a.metrics.map(m=>Math.min(pp(A.weekly[a.id][m.key],m.meta,m.inv),100)); return Math.round(ps.reduce((x,y)=>x+y,0)/ps.length); }
+function getMeta(key, type){ return A.metas[key]?.[type] ?? DEFAULT_METAS[key]?.[type] ?? 1; }
+function pp(v,key,inv){ const meta=getMeta(key,'weekly'); if(inv) return v===0?100:Math.max(0,Math.round((1-v/meta)*100)); return Math.min(Math.round((v/meta)*100),120); }
+function ppM(v,key){ const meta=getMeta(key,'monthly'); return Math.min(Math.round((v/meta)*100),120); }
+function avgA(a){ const ps=a.metrics.map(m=>Math.min(pp(A.weekly[a.id][m.key],m.key,m.inv),100)); return Math.round(ps.reduce((x,y)=>x+y,0)/ps.length); }
 function clr(v){ return v>=100?'g':v>=60?'y':'r'; }
 function fc(cl){ return cl==='g'?'#1A5432':cl==='y'?'#D97706':'#B11116'; }
 function fmt(v,unit,abs){
@@ -320,29 +365,27 @@ function renderAll(){ renderBody(); renderMonthly(); updateMeta(); }
 function renderBody(){
   document.getElementById('body').innerHTML = AREAS.map(a => {
     const av=avgA(a), cl=clr(av);
-    const gc=a.metrics.filter(m=>Math.min(pp(A.weekly[a.id][m.key],m.meta,m.inv),100)>=100).length;
+    const gc=a.metrics.filter(m=>Math.min(pp(A.weekly[a.id][m.key],m.key,m.inv),100)>=100).length;
     const st=av>=100?'Meta cumplida ✓':av>=60?'En progreso':'Por debajo de meta';
     const mh = a.metrics.map(m => {
-      const v=A.weekly[a.id][m.key], pv=pp(v,m.meta,m.inv), cl2=clr(pv);
+      const v=A.weekly[a.id][m.key], pv=pp(v,m.key,m.inv), cl2=clr(pv);
+      const meta=getMeta(m.key,'weekly');
       return `<div class="mr">
-        <div class="mt"><span class="ml">${m.label}</span><span class="mv c${cl2}">${Math.min(pv,100)}%<span class="mvals"> ${fmt(v,m.unit,m.abs)} / ${fmt(m.meta,m.unit,m.abs)}</span></span></div>
+        <div class="mt"><span class="ml">${m.label}</span><span class="mv c${cl2}">${Math.min(pv,100)}%<span class="mvals"> ${fmt(v,m.unit,m.abs)} / ${fmt(meta,m.unit,m.abs)}</span></span></div>
         <div class="mb"><div class="mf" style="width:${Math.min(pv,100)}%;background:${fc(cl2)};"></div></div>
       </div>`;
     }).join('');
-    const comments = A.comments[a.id] || [];
-    const ch = comments.length === 0
-      ? '<div class="no-comments">Sin notas esta semana</div>'
-      : comments.slice().reverse().map((c,ri) => {
-          const idx = comments.length-1-ri;
-          return `<div class="comment-item tipo-${c.tipo}">
-            <div class="comment-top">
-              <span class="comment-tipo">${tipoLabel(c.tipo)}</span>
-              <span class="comment-meta">${c.author?c.author+' · ':''}${fmtDate(c.ts)}</span>
-            </div>
-            <div class="comment-text">${c.text}</div>
-            <button class="comment-del" onclick="deleteComment('${a.id}',${idx})">✕</button>
-          </div>`;
-        }).join('');
+    const comments=A.comments[a.id]||[];
+    const ch=comments.length===0
+      ?'<div class="no-comments">Sin notas esta semana</div>'
+      :comments.slice().reverse().map((c,ri)=>{
+        const idx=comments.length-1-ri;
+        return `<div class="comment-item tipo-${c.tipo}">
+          <div class="comment-top"><span class="comment-tipo">${tipoLabel(c.tipo)}</span><span class="comment-meta">${c.author?c.author+' · ':''}${fmtDate(c.ts)}</span></div>
+          <div class="comment-text">${c.text}</div>
+          <button class="comment-del" onclick="deleteComment('${a.id}',${idx})">✕</button>
+        </div>`;
+      }).join('');
     return `<div class="area">
       <div class="area-bar" style="background:${a.color};"></div>
       <div class="area-hero">
@@ -351,10 +394,7 @@ function renderBody(){
       </div>
       <div class="metrics">${mh}</div>
       <div class="comments-section">
-        <div class="comments-header">
-          <span class="comments-title">Notas · ${comments.length}</span>
-          <button class="add-comment-btn" onclick="openCommentModal('${a.id}','${a.name}')">+ Agregar nota</button>
-        </div>
+        <div class="comments-header"><span class="comments-title">Notas · ${comments.length}</span><button class="add-comment-btn" onclick="openCommentModal('${a.id}','${a.name}')">+ Agregar nota</button></div>
         <div class="comments-list">${ch}</div>
       </div>
     </div>`;
@@ -362,12 +402,14 @@ function renderBody(){
 }
 
 function renderMonthly(){
-  document.getElementById('monthly-strip').innerHTML = MD.map(m => {
-    const v=A.monthly[m.key]||0, pv=Math.min(pp(v,m.meta,false),100), cl=clr(pv);
+  document.getElementById('monthly-strip').innerHTML = MD_KEYS.map(key => {
+    const v=A.monthly[key]||0, pv=Math.min(ppM(v,key),100), cl=clr(pv);
+    const meta=getMeta(key,'monthly');
+    const m=AREAS.flatMap(a=>a.metrics).find(x=>x.key===key)||{};
     return `<div class="m-item">
-      <div class="m-name" style="color:${m.color};">${m.label}</div>
+      <div class="m-name" style="color:${MD_COLORS[key]};">${MD_LABELS[key]}</div>
       <div class="m-bar"><div class="m-fill" style="width:${pv}%;background:${fc(cl)};"></div></div>
-      <div class="m-num c${cl}">${pv}%<span class="m-meta-txt"> · ${fmt(v,m.unit,m.abs)}/${fmt(m.meta,m.unit,m.abs)}</span></div>
+      <div class="m-num c${cl}">${pv}%<span class="m-meta-txt"> · ${fmt(v,m.unit,m.abs)}/${fmt(meta,m.unit,m.abs)}</span></div>
     </div>`;
   }).join('');
 }
@@ -378,6 +420,7 @@ function updateMeta(){
   document.getElementById('last-upd').textContent=A.lastUpdate?'Update: '+new Date(A.lastUpdate).toLocaleDateString('es-MX',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'';
 }
 
+// ── DATOS MODAL ──
 function openModal(){
   document.getElementById('modal-sub').textContent=new Date().toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'})+' · Los valores se suman al acumulado de la semana';
   document.getElementById('overlay').classList.add('open');
@@ -396,9 +439,9 @@ function saveData(){
       const v=parseFloat(inp.value)||0; if(v<=0) return;
       any=true;
       const m=area.metrics.find(x=>x.key===k); if(!m) return;
-      const prev=pp(A.weekly[aid][k],m.meta,m.inv);
+      const prev=pp(A.weekly[aid][k],k,m.inv);
       A.weekly[aid][k]=m.replace?Math.min(v,100):A.weekly[aid][k]+v;
-      const nxt=pp(A.weekly[aid][k],m.meta,m.inv);
+      const nxt=pp(A.weekly[aid][k],k,m.inv);
       if(prev<100&&nxt>=100) hit=true;
       if(MA.includes(k)&&!m.replace) A.monthly[k]=(A.monthly[k]||0)+v;
     });
@@ -410,9 +453,10 @@ function saveData(){
   showToast('Guardado correctamente');
 }
 
-let _aid=null, _tipo='hito';
+// ── COMMENT MODAL ──
+let _aid=null,_tipo='hito';
 function openCommentModal(areaId,areaName){
-  _aid=areaId; _tipo='hito';
+  _aid=areaId;_tipo='hito';
   document.getElementById('c-modal-title').textContent='Agregar nota — '+areaName;
   document.getElementById('c-text').value='';
   document.getElementById('c-author').value='';
@@ -420,7 +464,7 @@ function openCommentModal(areaId,areaName){
   document.getElementById('tipo-hito').classList.add('sel-hito');
   document.getElementById('c-overlay').classList.add('open');
 }
-function closeCommentModal(){ document.getElementById('c-overlay').classList.remove('open'); _aid=null; }
+function closeCommentModal(){ document.getElementById('c-overlay').classList.remove('open');_aid=null; }
 function selectTipo(t){
   _tipo=t;
   ['hito','alerta','problema'].forEach(x=>document.getElementById('tipo-'+x).className='tipo-btn');
@@ -439,11 +483,88 @@ function deleteComment(areaId,idx){
   A.comments[areaId].splice(idx,1);
   persist();renderAll();
 }
+
+// ── CONFIG MODAL ──
+const CFG_DEFS = [
+  { areaName:'Comercial', color:'#1A5432', keys:[
+    { key:'ventas',   label:'Ventas',           unit:'USD' },
+    { key:'clientes', label:'Clientes nuevos',  unit:'' },
+    { key:'creditos', label:'Créditos nuevos',  unit:'' },
+    { key:'cotiz',    label:'Cotizaciones',      unit:'' },
+  ]},
+  { areaName:'Operaciones + Logística', color:'#1D4ED8', keys:[
+    { key:'cruces',   label:'Cruces Laredo',    unit:'' },
+    { key:'entregas', label:'Entregas bodega',  unit:'' },
+    { key:'inv',      label:'Inventario proc.', unit:'%', noDiv:true },
+    { key:'incid',    label:'Incidencias (máx)',unit:'', noDiv:false },
+  ]},
+  { areaName:'Compras', color:'#B11116', keys:[
+    { key:'prov-c',  label:'Proveedores cotizados', unit:'' },
+    { key:'ahorro',  label:'Ahorro vs precio ref.', unit:'USD' },
+    { key:'ocs',     label:'OCs emitidas',           unit:'' },
+    { key:'prov-n',  label:'Proveedores nuevos',     unit:'' },
+  ]},
+];
+
+function openCfg(){
+  document.getElementById('cfg-grid').innerHTML = CFG_DEFS.map(area => {
+    const rows = area.keys.map(k => {
+      const mM=getMeta(k.key,'monthly'), mW=getMeta(k.key,'weekly');
+      const calcW=k.noDiv?'':`→ sem: <b>${Math.round(mM/4).toLocaleString('es-MX')}${k.unit==='USD'?' USD':''}</b>`;
+      return `<div class="cfg-row">
+        <span class="cfg-label">${k.label}</span>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
+          <div style="display:flex;align-items:center;gap:5px;">
+            <span style="font-size:10px;color:#bbb;">mensual</span>
+            <input class="cfg-input" type="number" id="cfg-m-${k.key}" value="${mM}" min="0" inputmode="numeric">
+          </div>
+          <div style="display:flex;align-items:center;gap:5px;">
+            <span style="font-size:10px;color:#bbb;">semanal</span>
+            <input class="cfg-input" type="number" id="cfg-w-${k.key}" value="${mW}" min="0" inputmode="numeric">
+          </div>
+        </div>
+        <div class="cfg-weekly" id="cfg-hint-${k.key}">${calcW}</div>
+      </div>`;
+    }).join('');
+    return `<div class="cfg-area-block">
+      <div class="cfg-area-title"><span class="cfg-area-dot" style="background:${area.color};"></span>${area.areaName}</div>
+      ${rows}
+      <div class="cfg-note">Al cambiar la meta mensual, la semanal se recalcula ÷4 automáticamente al guardar.</div>
+    </div>`;
+  }).join('');
+
+  // Live preview: update weekly hint as user types monthly
+  CFG_DEFS.forEach(area=>area.keys.forEach(k=>{
+    const mInp=document.getElementById('cfg-m-'+k.key);
+    const wInp=document.getElementById('cfg-w-'+k.key);
+    if(mInp&&!k.noDiv) mInp.addEventListener('input',()=>{
+      const v=parseFloat(mInp.value)||0;
+      wInp.value=Math.round(v/4);
+    });
+  }));
+
+  document.getElementById('cfg-overlay').classList.add('open');
+}
+function closeCfg(){ document.getElementById('cfg-overlay').classList.remove('open'); }
+function saveCfg(){
+  CFG_DEFS.forEach(area=>area.keys.forEach(k=>{
+    const mInp=document.getElementById('cfg-m-'+k.key);
+    const wInp=document.getElementById('cfg-w-'+k.key);
+    const mVal=parseFloat(mInp?.value)||0;
+    const wVal=parseFloat(wInp?.value)||0;
+    A.metas[k.key]={ monthly: mVal||1, weekly: wVal||1 };
+  }));
+  persist();renderAll();closeCfg();showToast('Metas actualizadas');
+}
+
+// ── RESET ──
 function confirmReset(){
   if(confirm('¿Resetear datos de la semana actual? Las notas y acumulados mensuales se conservan.')){
     A.weekly=dw();A.weekKey=WK;A.lastUpdate=null;persist();renderAll();showToast('Semana reseteada');
   }
 }
+
+// ── CONFETTI ──
 function boom(){
   const el=document.getElementById('cf-layer');el.style.display='block';el.innerHTML='';
   ['#1A5432','#B11116','#1D4ED8','#D97706','#fff'].forEach(col=>{
